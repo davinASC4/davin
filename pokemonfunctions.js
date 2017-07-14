@@ -19,20 +19,19 @@ function randWord(){
 }
 
 function randSentence(){
-    var sentence = "";
-    var amount = Math.round(Math.random()*10);
-    var first = randLetter()
-    var upper = first.toUpperCase()
-    for (i = 0; i < amount; i++);{
-        if (i == 0) {
-        sentence = sentence + upper + randWord() + ""
+    var sentence = " ";
+    var amount = Math.round(Math.random()*26);
+    for (b = 0; b < amount; b++){
+        if (b == 0){
+        sentence = sentence + randLetter().toUpperCase() + randWord() ;
+
         }
-        if (i > 0 && i < amount - 2){
-        sentence = sentence + randWord() + ""
-    }
-        if (i == amount - 1){
-            sentence = sentence + "."
-        }
+        if (b > 0 && b < amount -2){
+        sentence = sentence + " " + randWord() ;
+        }       
+       if (b == amount - 1){
+           sentence = sentence+ "."
+       }
 
     }
     return sentence
@@ -40,3 +39,6 @@ function randSentence(){
 //console.log(randLetter())
 //console.log(randWord())
 console.log(randSentence())
+
+
+
