@@ -1,44 +1,43 @@
 
 function setup(){
-    createCanvas(700,700);
+    createCanvas(500,500);
     background(10);
 
 }
 
-var x = Math.round(Math.random()*600 + 50);
-var y = Math.round(Math.random()*600 + 50);
-var a = Math.round(Math.random()*10);
+var a = 40; //x 
+var b = 40; //y
+var c = 1;
+var d = 1;
+var p = 10;
 function draw(){
-    x = x + a;
-    y = y + a;
-    print(x);
-    print(y);
-    createCanvas(700,700);
-    background(10);
-    fill("brown");
-    ellipse(x , y, 50, 50);
-    if (x >= 675 || x <= 25 ){
-        if (a <= 0){
-            a = Math.round(Math.random()*10 * -1);
-        }
-        
-        if (a >= 0){
-            a = Math.round(Math.random()*10) ;
-        }
-    }
 
-    else if (y >= 675 || y <= 25 ){
-        if (a <= 0){
-            a = Math.round(Math.random()*10);
-        }
-        
-        if (a >= 0){
-            a = Math.round(Math.random()*10) * -1;
-        }
+createCanvas(500,500);
+background(10);
+fill("Red");
+  a = a + c
+  b = b + d
+  ellipse(a, b, 50, 50);
 
-    }    
-    print(a);
+  if (a >= 475){
+      c = -1 * Math.round(Math.random() * p);
+      d = d * -1;
+  }
+
+  else if (b <= 25){
+      c = c * -1;
+      d = Math.round(Math.random() * p);
+  }
+
+  else if (b >= 475){
+      c = c * -1
+      d = Math.round(Math.random()* p) * -1;
+
+  }
+
+  else if (a <= 25){
+      c = Math.round(Math.random() * p);
+      d = d * -1
+  }
+
 }
-
-
-
