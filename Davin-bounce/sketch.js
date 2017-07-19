@@ -1,6 +1,6 @@
 
 function setup(){
-    createCanvas(500,500);
+    createCanvas(windowWidth,windowHeight);
     background(10);
 
 }
@@ -9,22 +9,24 @@ var a = 40; //x
 var b = 40; //y
 var c = 1;
 var d = 1;
-var p = 10;
+var p = 50; //speed
 var coloro = ["Red", "White", "Green", "Orange"];
 var q = 0;
+var s = 50; //size of circle
 var backco0 = Math.random()*250;
 var backco1 = Math.random()*250;
 var backco2 = Math.random()*250;
+
 function draw(){
 
-createCanvas(500,500);
+createCanvas(windowWidth,windowHeight);
 background(backco0, backco1, backco2);
 fill(coloro[q]);
   a = a + c
   b = b + d
-  ellipse(a, b, 50, 50);
+  ellipse(a, b, s, s);
 
-  if (a >= 475){ //right wall
+  if (a >= windowWidth - s/2){ //right wall
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
       backco2 = Math.random()*250;
@@ -33,7 +35,7 @@ fill(coloro[q]);
       d = Math.round(Math.random() * p);
   }
 
-  else if (b <= 25){ //ceiling
+  else if (b <= s/2){ //ceiling
       //c = c * -1;
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
@@ -42,7 +44,7 @@ fill(coloro[q]);
       d = Math.round(Math.random() * p);
   }
 
-  else if (b >= 475){ //floor
+  else if (b >= windowHeight - s/2){ //floor
       //c = c* -1;
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
@@ -52,7 +54,7 @@ fill(coloro[q]);
 
   }
 
-  else if (a <= 25){ //right wall
+  else if (a <= s/2){ //right wall
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
       backco2 = Math.random()*250;

@@ -1,7 +1,7 @@
 
 
 function setup(){
-    createCanvas(500,500);
+    createCanvas(windowWidth,windowHeight);
     background("Black");
 }
 
@@ -12,6 +12,7 @@ var b = 40; // center y of circle
 var c = 1; // increment horizontal
 var d = 1; // increment vertical
 var p = 10; //how random the changes are
+var s = 50 //size of circle
 function draw() {
  
   if (keyIsDown(UP_ARROW))
@@ -21,7 +22,7 @@ function draw() {
     y+=5;
 
   clear();
-  createCanvas(500, 500);
+  createCanvas(windowWidth, windowHeight);
   background("Black");
   fill("Green");
   rect(x, y, 10, 70);
@@ -29,35 +30,35 @@ function draw() {
   fill("Red");
   a = a + c
   b = b + d
-  ellipse(a, b, 50, 50);
+  ellipse(a, b, s, s);
 
-  if (a >= 475){
-      c = -1 * Math.round(Math.random() * p);
+  if (a >= windowWidth - s/2){ //right wall
+      c = -1 * c;
       //d = d * -1;
-      print(c,d);
+      
   }
 
-  else if (b <= 25){
-      //c = c * -1;
-      d = Math.round(Math.random() * p);
-      print(c,d);
+  else if (b <= s/2){ //ceiling
+      //c = c * -1
+      d = -1 * d;
+      
   }
 
-  else if (b >= 475){
-      c = c * -1
-      d = Math.round(Math.random()* p) * -1;
-      print(c,d);
+  else if (b >= windowHeight - s/2){ //floor
+      //c = c * -1
+      d = d * -1;
+    
 
   }
 
-  //else if (a <= 25){     //this is the left wall
+  //else if (a <= 25){     //left wall
       //c = Math.round(Math.random() * p);
       //d = d * -1
     
-    else if (a <= x + 25 && b <= y + 60){
-        c = Math.round(Math.random() * p);
-        d = d * -1
-        print(c,d);
+    else if (a <= x + 10/2 + s/2 && b <= y + 60){
+        c = (c - p) * -1;
+        //d = d * -1;
+    
     }
 
     
