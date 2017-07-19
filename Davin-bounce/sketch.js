@@ -29,7 +29,7 @@ fill(coloro[q]);
       backco1 = Math.random()*250;
       backco2 = Math.random()*250;
       q = 0;
-      c = -1 * Math.round(Math.random() * p);
+      c = -1 * Math.round(Math.random() * p); //if the circle approaches this line it's comming from the left with a positive value of c
       //d = d * -1;
   }
 
