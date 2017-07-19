@@ -24,16 +24,16 @@ fill(coloro[q]);
   b = b + d
   ellipse(a, b, 50, 50);
 
-  if (a >= 475){
+  if (a >= 475){ //right wall
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
       backco2 = Math.random()*250;
       q = 0;
       c = -1 * Math.round(Math.random() * p); //if the circle approaches this line it's comming from the left with a positive value of c
-      //d = d * -1;
+      d = Math.round(Math.random() * p);
   }
 
-  else if (b <= 25){
+  else if (b <= 25){ //ceiling
       //c = c * -1;
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
@@ -42,7 +42,7 @@ fill(coloro[q]);
       d = Math.round(Math.random() * p);
   }
 
-  else if (b >= 475){
+  else if (b >= 475){ //floor
       //c = c* -1;
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
@@ -52,13 +52,13 @@ fill(coloro[q]);
 
   }
 
-  else if (a <= 25){
+  else if (a <= 25){ //right wall
       backco0 = Math.random()*250;
       backco1 = Math.random()*250;
       backco2 = Math.random()*250;
       q = 3;
       c = Math.round(Math.random() * p);
-      //d = d * -1
+      d = Math.round(Math.random() * p);
   }
 
 }
