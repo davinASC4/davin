@@ -7,11 +7,11 @@ function setup(){
 
 var x = 5;
 var y = 250;
-var a = 40; // center x of circle
+var a = Math.round(Math.random()*300); // center x of circle
 var b = 40; // center y of circle
 var c = 1; // increment horizontal
 var d = 1; // increment vertical
-var p = 1; //how random the changes are
+var p = 10; //how random the changes are
 function draw() {
  
   if (keyIsDown(UP_ARROW))
@@ -33,28 +33,35 @@ function draw() {
 
   if (a >= 475){
       c = -1 * Math.round(Math.random() * p);
-      d = d * -1;
+      //d = d * -1;
+      print(c,d);
   }
 
   else if (b <= 25){
-      c = c * -1;
+      //c = c * -1;
       d = Math.round(Math.random() * p);
+      print(c,d);
   }
 
   else if (b >= 475){
       c = c * -1
       d = Math.round(Math.random()* p) * -1;
+      print(c,d);
 
   }
 
   //else if (a <= 25){     //this is the left wall
       //c = Math.round(Math.random() * p);
       //d = d * -1
-  //}
+    
+    else if (a <= x + 25 && b <= y + 60){
+        c = Math.round(Math.random() * p);
+        d = d * -1
+        print(c,d);
+    }
 
-  else if (a + 25 == x && b + 25 == y);
-    c = Math.round(Math.random() * p);
-    d = d * -1;
+    
+  //}
 
 }
 
