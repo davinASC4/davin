@@ -113,7 +113,10 @@ function keyPressed(){
         p1[0].HP = p1[0].HP - comp[0].moves[0][cm+1].dmg;
     }
 
-    b = key;
+    if (key > 0 && key < 4){
+        b = key;
+    }
+
     comp[0].HP = comp[0].HP - p1[0].moves[0][b-1].dmg;
     clear()
 
@@ -162,6 +165,76 @@ function keyPressed(){
 
     return false
 }
+
+var pop = ""
+function mouseClicked(){
+
+    if (mouseY > 505 && mouseY < 555){
+        if (mouseX < 20 && mouseX > 30){
+            pop = 1
+        }
+        
+    }
+
+    var cm = Math.round(Math.random() * 2);
+
+    check = true;
+    if (check == true){
+        p1[0].HP = p1[0].HP - comp[0].moves[0][cm+1].dmg;
+    }
+
+    comp[0].HP = comp[0].HP - p1[0].moves[0][pop-1].dmg;
+    clear()
+
+    createCanvas(1000, 1000);
+    background(150);
+
+   fill("LightCoral");
+    rect(50,25,150,50);
+
+   fill("CornflowerBlue");
+    rect(600,400,150,50);
+
+    textSize(20);
+    
+    //button 1
+    fill("Yellow");
+    rect(20,530,150,50);
+    fill("Black");
+    text("Flamethrower", 32,545,150,50);
+
+   //button 2
+    fill("Yellow");
+    rect(200,530,150,50);
+    fill("Black");
+    text("Fly", 270,545,150,50);
+
+   //button 3
+    fill("Yellow");
+    rect(370,530,150,50);
+    fill("Black");
+    text("Slash", 410,545,150,50);
+
+   //button 4
+    fill("Yellow");
+    rect(530,530,150,50);
+    fill("Black");
+    text("Ember", 570,545,150,50);
+
+
+    text(String(charizard.name), 600, 400);
+    text(String(charizard.HP), 600, 425);
+    text(String(pikachu.name), 50, 25);
+    text(String(pikachu.HP), 50, 50);
+
+    pop = "";    
+
+    return false
+}
+
+
+
+
 
 
 
