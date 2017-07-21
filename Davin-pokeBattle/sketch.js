@@ -43,14 +43,7 @@ comp.push(pikachu);
 charizard.moves.push(charmovelist);
 pikachu.moves.push(pikamovelist);
 
-console.log(p1);
-console.log("");
 
-
-
-var b = 1
-console.log(p1[0].name, "used", p1[0].moves[0][b].name, "on", comp[0].name);
-console.log(comp[0]);
 
 
 function setup(){
@@ -103,9 +96,11 @@ function draw(){
 
 
 var check = false;
-
+var b = "";
 function keyPressed(){
     
+    if (key > 0 && key < 5){
+    b = key;
     var cm = Math.round(Math.random() * 2);
 
     check = true;
@@ -113,9 +108,6 @@ function keyPressed(){
         p1[0].HP = p1[0].HP - comp[0].moves[0][cm+1].dmg;
     }
 
-    if (key > 0 && key < 4){
-        b = key;
-    }
 
     comp[0].HP = comp[0].HP - p1[0].moves[0][b-1].dmg;
     clear()
@@ -161,8 +153,15 @@ function keyPressed(){
     text(String(pikachu.name), 50, 25);
     text(String(pikachu.HP), 50, 50);
 
-    
+    if (charizard.HP <= 0 || pikachu.HP <= 0){
+           text(String(charizard.name), 600, 400);
+        text(String(charizard.HP), 600, 425);
+        text(String(pikachu.name), 50, 25);
+        text(String(pikachu.HP), 50, 50);
 
+        alert("Game over");
+    }
+    }
     return false
 }
 
