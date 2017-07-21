@@ -5,3 +5,4 @@ function setup(){
     fill("White");
     rect(0, 0, 800, 800);
 }
+
