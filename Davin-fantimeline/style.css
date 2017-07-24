@@ -1,0 +1,38 @@
+
+body{
+    text-align: center;
+    background-color: darkslategray;
+
+
+}
+
+#top{
+    color: white;
+
+}
+
+.main{
+    border: 3px dashed gray;
+    vertical-align: middle;
+
+}
+
+.album{
+    border: 2px solid red;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: lightblue;
+    
+
+}
+
+.appearance{
+    border: 2px solid green;
+
+}
+
+p{
+    display: inline-block;
+
+}
