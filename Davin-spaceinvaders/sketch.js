@@ -1,9 +1,4 @@
-function enemy(color, point, rowz){
 
-    this.point = point;
-    this.color = color;
-    this.rowz = rowz
-}
 
 function Missile (xp, yp, width, height, boolean){
     this.xp = xp;
@@ -13,6 +8,19 @@ function Missile (xp, yp, width, height, boolean){
     this.height = height;
 }
 
+var bullet = new Missile (400, 400, 5, 15, false);
+var enbullet = new Missile (40, 40, 5, 5, false);
+
+function Enemy(xp, yp, size, boolean, shape, point){
+    this.xp = xp;
+    this.yp = yp;
+    this.size = size;
+    this.boolean = boolean;
+    this.shape = "Square";
+    this.point = point;
+}
+
+var startsq = new Enemy (25, 25, 10, true);
 
 // var square = new enemy ("red", 25, 0);
 // var circle = new enemy ("White", 50, 1);
@@ -23,145 +31,161 @@ function setup(){
 
 var row = prompt("How many rows would you like? ");
 var column = prompt("How many columns would you like? ");
- var playgrid = [];
+var engrid = [];
  
 
-for (plug = 0; plug < row; plug++){
-                                                     //these 'for' loops would make a boolean matrix (?) named playgrid like above;
-     playgrid.push([])
-     
-    for (jam = 0; jam < column; jam++){  
-        playgrid[plug].push (true);
-    }
 
+for(i = 0; i < row; i++){
+    engrid.push([]);
+    for(j = 0; j < column; j++){
+    engrid[i].push({});
+    engrid[i][j] = new Enemy (startsq.xp + 2 *startsq.size * j , startsq.yp + 2 *startsq.size * i, startsq.size, true, "Square", 25);
+    }
 }
 
 
-var bullet = new Missile (400, 25, 5, 15, false);
-var bulletmov = 1;
-var enbullet = new Missile (40, 40, 5, 5, false);
+
+var bulletmov = 3;
 var shoot = Math.round(Math.random());
-var a = 25; //x coordinate of first square
-var b = 25; //y coodrinate of first square
-var c = 1;  //x increment
-var d = 1; //y increment (decrement?)
+var c = 1;  //x increment of enemies
+var d = 0; //y increment (decrement?)
 var s = 10; //size of squares
-var xCoord = 400 //
-var yCoord = 400//
+var xCoord = 400 //of ship
+var yCoord = 400//of ship
 var shheight = 15;
 var shwidth = 40;
-var life = 3;
+var life = 5;
+var score = 0;
+
 function draw(){
 
-
-    shoot = Math.round(Math.random());
-   createCanvas(800,800);
+    createCanvas(800,800);
     background("Black");
     fill("White");
+
     rect(xCoord, yCoord, shwidth, shheight);
     if (keyIsDown(LEFT_ARROW)) {
             if (xCoord > 0) {
                 xCoord -= 5;
             }
-        }
+    }
 
     if (keyIsDown(RIGHT_ARROW)) {
             if (xCoord + 50 < width) {
                 xCoord += 5;
             }
-        }
-
+    }
 
     fill("red");
-  
-    for (ro = 0; ro < playgrid.length; ro ++){                
-        for (colum = 0; colum < playgrid[0].length; colum++){
-            
-            if (playgrid[ro][colum] == true){  
-                  if (shoot == 1 && enbullet.boolean == false){
+    for (ro = 0; ro < row; ro ++){                
+        for (colum = 0; colum < column; colum++){
+            if (engrid[ro][colum].boolean == true){  
+                shoot = Math.round(Math.random() * 100);
+                if (shoot == 41 && enbullet.boolean == false && engrid[ro][colum].boolean == true){
                     enbullet.boolean = true;
-                    enbullet.xp = a + 2*s*(colum)
-                    enbullet.yp = b + 2 *s* (ro)
+                    enbullet.xp = engrid[ro][colum].xp;
+                    enbullet.yp = engrid[ro][colum].yp;
                 }
-                
-                if ( bullet.xp == a + 2*s*(colum) && bullet.yp ==  b + 2 *s* (ro) && bullet.boolean == true){
-                    bullet.boolean= false;
-                    playgrid[ro][colum] = false;
-                    
+                if (bullet.yp >= (engrid[ro][colum].yp) && bullet.yp <= (engrid[ro][colum].yp + engrid[ro][colum].size) ){
+                    if (bullet.xp >= (engrid[ro][colum].xp) && bullet.xp <= (engrid[ro][colum].xp + engrid[ro][colum].size) ){
+                        engrid[ro][colum].boolean = false;
+                        bullet.xp = 500;
+                        bullet.yp = 500;
+                        bullet.boolean = false;
+                        score += engrid[ro][colum].point
+                    }
+
+            }
+
+                if (engrid[ro][colum].boolean == false){print(ro, colum);}
+
+                else if (engrid[ro][colum].boolean  == true){      
+                    if (engrid[ro][colum].shape == "Square"){           
+                        rect(engrid[ro][colum].xp, engrid[ro][colum].yp, s, s);
+                    }
+                    engrid[ro][colum].xp += c;
+                    engrid[ro][colum].yp += d;
                 }
-                else{                
-                rect(a + 2*s*(colum), b + 2 *s* (ro), s, s);
-                }
+
+
 
             }
         }
   
     }
 
-    if (a == 400){                           
-            b = b + d;      
-            c = -1;         
-        }
-    else if (a == 10){
-        b = b + d;
+    if (engrid[0][0].xp == 400){                           
+        d = 10;      
+        c = -1;         
+    }
+    else if (engrid[0][0].xp == 10){
+        d = 10;
         c = 1;
     }
-    a = a + c      
+
+    else{
+        d = 0;
+    }
+
     textSize(30);
     fill("Yellow");
-    text(String(life), 600, 50);
+    text(String(life) + " " + "Lives", 600, 50);
+    text("Score: " + " " + String(score), 600, 90);
 
-    if (bullet.boolean == false){
-        rect(xCoord + shwidth/2 , yCoord + shheight/2 , bullet.width, bullet.height);
-        
+
+
+
+    if (bullet.boolean == false && keyIsDown(UP_ARROW)){
+        bullet.boolean = true;
+        bullet.xp = xCoord;
+        bullet.yp = yCoord;        
     }
-
-    
 
     if (bullet.boolean == true){
-
+        ellipse(bullet.xp, bullet.yp, s, s);
+        bullet.yp -= bulletmov;
     }
 
+    if(bullet.yp <= 25){
+        bullet.boolean =false;
+    }
+    
     if (enbullet.boolean == true){
         ellipse(enbullet.xp, enbullet.yp, enbullet.width, enbullet.height);
         enbullet.yp = enbullet.yp + bulletmov;
+        
 
     }        
 
-    if (enbullet.yp == 500){
+    if (enbullet.yp >= 500){
         enbullet.boolean = false;
     }
-    
-    if (enbullet.yp >= yCoord && enbullet.yp <= yCoord + shheight && enbullet.xp >= xCoord && enbullet.xp <= xCoord + shwidth){
+
+
+    if (enbullet.yp >= yCoord && enbullet.yp <= (yCoord + shheight)){
+        if (enbullet.xp >= xCoord && enbullet.xp <= (xCoord + shwidth)){
+        enbullet.yp = 0;
+        enbullet.xp = 0;
         enbullet.boolean = false;
         life = life - 1;
-
-        if (life <= 0){
-            life = life - 1;
-            alert("Game");
         }
     }
-
     
-}
+    if (life <= 0){
+        alert("Game");
+    }
 
-function keyPressed(){
-       if (keyIsDown(LEFT_ARROW)) {
-            if (xCoord > 0) {
-                xCoord -= 5;
-            }
-        }
+    print(score);
 
-    if (keyIsDown(RIGHT_ARROW)) {
-            if (xCoord + 50 < width) {
-                xCoord += 5;
-            }
-        }
+    if (score == 25 * column * row){
+        alert("You win");
+    }
 }
+    
+
 
 
 //adding later
-//a checking array to compare the x,y positions of the enemies and the moving bullet
+
 //a break when a certain point is reached
-//should link enemies to boolean table even further so that if it's false it won't draw the enemy instead of making it black
 
