@@ -2,6 +2,9 @@
 body{
     text-align: center;
     background-color: darkslategray;
+    background-image: url("download.jpg");
+    background-size: cover;
+    background-position: center;
 
 
 }
@@ -19,10 +22,10 @@ body{
 
 .album{
     border: 2px solid red;
-    vertical-align: middle;
     margin-left: auto;
     margin-right: auto;
     background-color: lightblue;
+    width: 65%;
     
 
 }
@@ -32,7 +35,16 @@ body{
 
 }
 
+
+
 p{
     display: inline-block;
+    width: 74%;
+    vertical-align: middle;
+}
 
+
+img{
+    width: 25%;
+    vertical-align: middle;
 }
