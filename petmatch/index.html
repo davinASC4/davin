@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="http://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!--Reference platform.js library here-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!--Reference Client ID in meta tag here-->
+    <meta name="google-signin-client_id" content="757393695014-s9g55fp0faj857cc5makg43navv9lo2i.apps.googleusercontent.com">
+
+    <link src= "app.js">
+    </head>
+    <body>
+
+       <h1>Pet MATCH</h1>
+        <form id="myform" >
+            <h2>Rate from 1-5 </h2>
+            <p>What's your willing to spend on a pet?</p>
+            <input type="number" id="number" >
+            <p>How spacious is your home?</p>
+            <input type="number" id="number" >
+            <p>How many kids do you have </p>
+            <input type="number" id="number" >
+            <p>Do you have allergies</p>
+            <input type="number" id="number">
+            <p></p>
+            <input type="submit" onclick="bye()">
+
+
+  
+
+
+       </form>
+             <div class="signs">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+        <div class ="mainContainer">
+        <header>
+            <h1>WELCOME <span class="userName">USER_NAME</span></h1>    
+        </header>
+
+        <!--Populate section with user data-->
+        <section>
+            <!--picture-->
+            <div class = "userImg">
+                <img src="assets/placeholder.png">
+            </div>
+
+
+
+        </section>
+    </div>
+    </div>
+
+    </body>
+</html>

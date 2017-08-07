@@ -1,0 +1,87 @@
+
+<html>
+    <head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Gamee</title>
+
+    <!--Reference platform.js library here-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!--Reference Client ID in meta tag here-->
+    <meta name="google-signin-client_id" content="757393695014-s9g55fp0faj857cc5makg43navv9lo2i.apps.googleusercontent.com">
+
+
+    <!--Go to https://console.firebase.google.com-->
+    <!--Sign in and add a project "fireMessage"-->
+    <!--PASTE SNIPPET HERE-->
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+    <script>
+    // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyA6u-umfbFl3IkAn3ropaEG4rBGMblfknc",
+            authDomain: "messaging-cddef.firebaseapp.com",
+            databaseURL: "https://messaging-cddef.firebaseio.com",
+            projectId: "messaging-cddef",
+            storageBucket: "",
+            messagingSenderId: "640237403129"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+
+
+    <!--jquery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Alike+Angular|Asul|Eczar" rel="stylesheet">
+
+                <script src = "main.js"></script>
+        <script src = "style.css"></script>
+
+    </head>
+
+    <body>
+        <form>
+            <header>
+                <h1>WELCOME <span class="userName">USER_NAME</span></h1>    
+            </header>
+
+            <div class="signs">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+            </div>
+            
+
+            <div class="game">
+                <div>
+                    <p>Your choice: Rock, Paper, Scissors</p> 
+                </div>
+            </div>
+
+            <div class = "screen">
+                <!--holds scores-->
+            </div>
+
+            <div class = "buttons">
+                <div class="GObutton">
+                        <input type="reset" onclick="rps('r')" value="Rock">
+                    </div> 
+                    <div class="GObutton">
+                        <input type="reset" onclick="rps('p')" value="Paper">
+                    </div> 
+                    <div class="GObutton">
+                        <input type="reset" onclick="rps('s')" value="Scissors">
+                </div> 
+            </div>
+
+        </form>
+    </body>
+</html>
