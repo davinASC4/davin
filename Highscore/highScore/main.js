@@ -21,7 +21,6 @@ function onSignIn(googleUser) {
     $("img").attr("src", profile.getImageUrl());
     $(".email").text(profile.getEmail());
     $("body").append("<p>test code</p>")
-    window.location.href = "highScore/index.html"
 }
 
 //called when "sign out" button clicked
@@ -34,6 +33,7 @@ function onSignOut() {
         $(".userName").text("USER_NAME");
         $("img").attr("src", "assets/placeholder.png");
         $(".email").text("example@example.com");
+        
     });
 }
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+
+
+       <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCr_9YSj9JApVapWaooFj-IJTNpvJXbego",
+                authDomain: "messaging-7864c.firebaseapp.com",
+                databaseURL: "https://messaging-7864c.firebaseio.com",
+                projectId: "messaging-7864c",
+                storageBucket: "messaging-7864c.appspot.com",
+                messagingSenderId: "159375601717"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+        <title>dddd</title>
+
+   </head>
+        <body>
+            <div1><h1 tag="title">ROCK PAPER SCIOSSORS</h1></div1>
+            <div class = "screen"> <p>random text</p></div>
+        <div class="ChoiceBttn">
+                <input type="image" src="Rock.jpg" name="saveForm" class="handChoice" onClick="rps('r')"/>
+                <input type="image" src="Paper.jpg" name="saveForm" class="handChoice" onClick="rps('p')"/>
+                <input type="image" src="Scissors.jpg" name="saveForm" class="handChoice" onClick="rps('s')"/>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">    
+
+
+       <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCr_9YSj9JApVapWaooFj-IJTNpvJXbego",
+                authDomain: "messaging-7864c.firebaseapp.com",
+                databaseURL: "https://messaging-7864c.firebaseio.com",
+                projectId: "messaging-7864c",
+                storageBucket: "messaging-7864c.appspot.com",
+                messagingSenderId: "159375601717"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+        <!--Reference platform.js library here-->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <!--Reference Client ID in meta tag here-->
+    <meta name="google-signin-client_id" content="757393695014-s9g55fp0faj857cc5makg43navv9lo2i.apps.googleusercontent.com">
+
+
+
+
+
+
+
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="main.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+   </head>
+        <body>
+
+            <div class="signs">
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+            </div>
+
+
+
+
+            <div1><h1 tag="title">ROCK PAPER SCIOSSORS</h1></div1>
+            <div class = "output"> <p>random text</p></div>
+        <div class="ChoiceBttn">
+                <input type="image" src="Rock.jpg" name="saveForm" class="handChoice" />
+                <input type="image" src="Paper.jpg" name="saveForm" class="handChoice" />
+                <input type="image" src="Scissors.jpg" name="saveForm" class="handChoice" />
+            </div>
+
+        </div>
+    </body>
+</html>
