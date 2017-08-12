@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+       }
+    </style>
+
+    <script src="main.js"></script>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuTYHWjbohOSfRZGuOBAzyU7Jj3PG_80">
+    </script>
+
+  </head>
+
+  <body>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <button onclick="initMap(getParam('lat'),getParam('long'))">Click me</button>
+    <button onclick="getLocation()">Let me</button>
+
+
+
+  </body>
+</html>
