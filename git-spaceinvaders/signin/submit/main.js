@@ -23,3 +23,6 @@ function onSignOut() {
     window.location.href = "../index.html";
 }
 
+function backpage(){
+    window.location.href = "../index.html";
+}

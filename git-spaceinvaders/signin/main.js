@@ -17,5 +17,5 @@ function onSignOut() {
 }
 
 function changepage() {
-    window.location.href = "submit/1.html";
+    window.location.href = "/signin/submit/1.html";
 }

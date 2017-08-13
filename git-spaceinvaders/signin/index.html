@@ -11,7 +11,7 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-
+<link rel="stylesheet" href="style.css">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
         <!--Reference Client ID in meta tag here-->
     <meta name="google-signin-client_id" content="657696259663-reptkndga3chnnd8hnrmcapb6ba6f64u.apps.googleusercontent.com">
@@ -33,24 +33,80 @@
   </script>
 
  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
- <script src="main.js"></script>
+
+
 
 </head>
 <body>
+
 
     <div class="signs">
        <a href="#" class="signOut" onclick="onSignOut();" style="color: red;">Sign out</a>
     </div>
 
-    <form>
-        <p>Ships</p>
-        <input type = "image" src = "../rsource/ellipse.png"> </input>
-
+    <form action = "http://localhost:8000/signin/submit/1.html" >
+        
+        row: <input type = "text" name="row" /> <br>
+        <p></p>
+        column: <input type = "text" name="column" /> <br>
+        <p></p>
+        ship type: <input type = "text" name="ship" /> <br>
+        <p></p>
+        missile type: <input type = "text" name="missile" /> <br>
+        <p></p>
+        minion type: <input type = "text" name="minion" /> <br>
+        <p></p>
+        background : <input type = "text" name="background1" /> <br>
+        <p></p>
+        <input type="submit" value="Submit"></input>
 
     </form>
 
-        <input type = "submit" onclick="changepage()"> </input>
+    <div id = "ship">
+      <p>Ship types</p>
+      <img src = "../rsource/ellipse.png " height="42" width="42"/>
+      <img src = "../rsource/ship1.png " height="42" width="42"/>
+      <br>
+            <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
 
+    </div>
+
+    
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
