@@ -22,6 +22,7 @@ function getParam(name){
         lat = position.coords.latitude;
         long = position.coords.longitude;
         window.location.hash = '?&lat='+ lat +"&long=" + long ;
+        $("body").append("<p>"+lat +","+long +"</p>")
         }
 
 function initMap(x,y) {
