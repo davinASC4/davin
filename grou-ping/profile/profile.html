@@ -1,0 +1,92 @@
+
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>myOAuth</title>
+
+        <!--Go to https://console.firebase.google.com-->
+        <!--Sign in and add a project "fireMessage"-->
+        <!--PASTE SNIPPET HERE-->
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB7yh7WurRyNXf_OjfLhZHFJEp5j1ySUhE",
+            authDomain: "grouping-1502581913264.firebaseapp.com",
+            databaseURL: "https://grouping-1502581913264.firebaseio.com",
+            projectId: "grouping-1502581913264",
+            storageBucket: "grouping-1502581913264.appspot.com",
+            messagingSenderId: "861906013253"
+        };
+        firebase.initializeApp(config);
+        </script>
+
+
+        <!--jquery-->
+        <script
+        src="https://code.jquery.com/jquery-3.2.1.js"
+        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+        crossorigin="anonymous"></script>
+        
+        <!--Reference platform.js library here-->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <!--Reference Client ID in meta tag here-->
+        <meta name="google-signin-client_id" content="861906013253-n44a50rchflm8no9r0n454ugc50erqcr.apps.googleusercontent.com">
+
+
+        <script src ="app.js"> </script>
+
+    </head>
+
+    <body>
+        <div class="signs">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+
+        <button onclick = "googleSignout()">Google Signout</button>
+
+        <div id="data">
+            <header>
+                <h1>WELCOME <span class="userName">USER_NAME</span></h1>    
+            </header>     
+
+            here is where the data is <br>
+            probably jquery or something to firebase to grab data after oauth sigin <br>
+            <p></p>
+
+            <!--picture-->
+            <div class = "userImg">
+            </div>
+
+            <!--User Data-->
+            <div class="userData">
+                <h2>E-MAIL:</h2>
+                <p class="email">example@example.com</p>
+
+                <div id="recent">recent "pings" <br>
+                </div>
+                <div id="friends">
+                    friend list <br>
+                    <p></p>
+                </div>
+                <button onclick="button1()">Click bait</button>
+                <button onclick="ping()">Ping my ass</button>
+
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+    </body>
+
+</html>

@@ -28,12 +28,13 @@ function getParam(name){
 function initMap(x,y) {
         var uluru = {lat: parseInt(x), lng: parseInt(y)};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
+          zoom: 10,
           center: uluru
         });
         var marker = new google.maps.Marker({
           position: uluru,
           map: map
         });
+        console.log(x,y);
       }
 

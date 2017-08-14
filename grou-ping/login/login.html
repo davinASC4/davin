@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>myOAuth</title>
+
+
+        <!--jquery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        
+        <!--Reference platform.js library here-->
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+        <!--Reference Client ID in meta tag here-->
+    <meta name="google-signin-client_id" content="861906013253-n44a50rchflm8no9r0n454ugc50erqcr.apps.googleusercontent.com">
+
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+        <script src="main.js"></script>
+
+
+    </head>
+
+    <body>
+        <div class="signs">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+        </div>
+
+    </body>
+
+</html>
