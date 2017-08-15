@@ -65,7 +65,7 @@ function errData(err){
     console.log('Error!');
     console.log(err);
 }
-//storing data into firebase and linking it to the current user via his/her email;
+//storing data into firebase and linking it to the current user via his/her uid;
 //need a function that returns the users key in the database "KYIUEWJK@KJ"
     //that way any other function would iterate through the databse and when it finds a matching key will
         //do something (...)
@@ -256,7 +256,7 @@ function gotData(data){
             ref.push(newperson)
             console.log('new user added')
             }
-        // // looks through database for user, if email is found push into database as a new user, otherwise do nothing
+        // // looks through database for user, if uid is found push into database as a new user, otherwise do nothing
     }
 }
 
@@ -301,13 +301,13 @@ function button1(){
 function keyData(data){
     //gets current user; also good stuff
     var user = firebase.auth().currentUser;
-    var email = user.email;
+    var userid = user.uid;
     var specificKey;
    var users = data.val();
     var keys = Object.keys(users);
    for (var i = 0; i < keys.length; i++){
             var k = keys[i];
-            if( email == users[k].email){
+            if( userid == users[k].uid){
                 specificKey = k;
                 }
             }

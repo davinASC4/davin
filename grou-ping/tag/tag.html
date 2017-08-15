@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="style.css"></link>
+        <script src="https://use.fontawesome.com/ef351e18db.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+    </head>
+    <body onload="storeActivity();">
+        <h1>Explore</h1>
+        <input id="searchPing"></input>
+        <button id="filterTag" onclick="showFilter('popUpFilter')">Filter</button>
+        <button type="submit" onclick="searchByKeyWord()">Go</button>
+        <p id="response"></p>
+        <input type="file" accept="image/*" capture="camera">
+        <div class="activityList">
+            <div class="pingActivity" id="activity1">
+                <h4 class="activityTitle">Fun Painting Class!</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">paint drawing</p>
+            </div>
+            <div class="pingActivity" id="activity2">
+                <h4 class="activityTitle">Hang At Beach?</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">beach sunny chilling</p>
+            </div>
+            <div class="pingActivity" id="activity3">
+                <h4 class="activityTitle">Superbowl Football Night</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">football gamenight party superbowl</p>
+            </div>
+            <div class="pingActivity" id="activity4">
+                <h4 class="activityTitle">Monoply Games</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">boardgame monoply games</p>
+            </div>
+            <div class="pingActivity" id="activity5">
+                <h4 class="activityTitle">Need Help With Calc</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">math help tutor</p>
+            </div>
+            <div class="pingActivity" id="activity6">
+                <h4 class="activityTitle">Extra Food = Dinner Party!</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">food dinner party wine</p>
+            </div>
+            <div class="pingActivity" id="activity7">
+                <h4 class="activityTitle">Bought New Xbox, Join Me?</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">videogame xbox play game</p>
+            </div>
+            <div class="pingActivity" id="activity8">
+                <h4 class="activityTitle">Need 9 People For Baseball Game</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">baseball team game sport</p>
+            </div>
+            <div class="pingActivity" id="activity9">
+                <h4 class="activityTitle">Gig Tomorrow Night, Need Drummer</h4>
+                <p>Blah Blah Blah Blah Blah Blah Blah</p>
+                <p class="activityTag">music gig perform drum band rock</p>
+            </div>
+        </div>
+        <div id="popUpFilter" class="popUpPosition" hidden>
+            <div id="popUpWrapper">
+                <div id="popUpContainer">
+                    <i id="closePopUp" class="fa fa-window-close" aria-hidden="true" onclick="showFilter('popUpFilter'), clearTags();"></i>
+                    <input id="newTag"></input>
+                    <button type="submit" onclick="addTag('newTag'), showFilter('popUpFilter'), filterByTag(), clearTags();">Submit</button>
+                    <div class="tagChoiceField"></div>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    </body>
+</html>
