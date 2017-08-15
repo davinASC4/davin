@@ -14,6 +14,8 @@ function onSignOut() {
         $(".userName").text("USER_NAME");
         $(".email").text("example@example.com");
     });
+    googleSignout();
+
 }
 
 //brings google data
@@ -23,10 +25,11 @@ function onSignIn(googleUser){
     var name = profile.getName();
     var image = profile.getImageUrl();
     var email = profile.getEmail();
-    // $(".userName").text(name);
+    $(".userName").text(name);
     $("img").attr("src", image);
-    // $(".email").text(email);
+    $(".email").text(email);
     googleSignin();
+
 }
 
 //authenticates users?
@@ -63,50 +66,6 @@ function googleSignout() {
 // ///
 
 //good stuff; this adds new users
-
-ref.once('value', gotData, errData);
-
-//good stuff; this adds new users
-function gotData(data){
-    //gets current user; also good stuff
-    var user = firebase.auth().currentUser;
-    console.log(user);
-
-    var name = user.displayName;
-    $(".userName").text(name);
-    console.log(name);
-
-    var email = user.email;
-    $(".email").text(email);
-    console.log(email);
-
-    // console.log(data.val());
-    var users = data.val();
-    console.log('This is users:', users);
-    var keys = Object.keys(users);
-    console.log(keys);
-
-    //checks current user's email
-    var checker = false;
-    var neww = {
-        name: name,
-        email: email,
-        }
-    //looks through database and checks if the user's email already exists; if it doesn't then it pushes it into database
-    for (var i = 0; i < keys.length; i++){
-        var k = keys[i];
-        if( email == users[k].email){
-            checker = true;
-            break
-            }
-        }
-    if (checker == false){
-        ref.push(neww)
-        console.log('new user added')
-        }
-    // looks through database for user, if email is found push into database as a new user, otherwise do nothing
-
-}
 
 function errData(err){
     console.log('Error!');
@@ -150,9 +109,11 @@ function ping(){
     ref.once('value',ping1, errData);
 }
 
+
 function ping1(data){
     //gets current user; also good stuff
     var user = firebase.auth().currentUser;
+    console.log(user);
     var email = user.email;
     var specificKey;
 
@@ -167,14 +128,72 @@ function ping1(data){
             }
     // $('.body').append("<p>" + specificKey + '</p>')
     // console.log(specificKey);
+    // !!!!should declare specific key as global variable!!!!! 
 
-    var ref2 = firebase.database().ref('users/' + specificKey);
 
-    var ping={
+//testing
+    var refping = firebase.database().ref('users/' + specificKey + '/ping');
+
+    var ping = {
         lat: 100,
-        long: 90,
+        long: 79,
+        description: 'sample text',
+        duration: 'sample time',
     }
-    ref2.update({ping: ping});
-
+    refping.push(ping);
 
 }
+
+
+function newUser(){
+ref.once('value', gotData, errData);
+}
+
+//good stuff; this adds new users
+function gotData(data){
+
+    //gets current user; also good stuff
+    var user = firebase.auth().currentUser;
+    console.log(user);
+
+    var name = user.displayName;
+    $(".userName").text(name);
+    console.log(name);
+
+    var email = user.email;
+    $(".email").text(email);
+    console.log(email);
+
+    // console.log(data.val());
+    var users = data.val();
+    console.log('This is users:', users);
+    var keys = Object.keys(users);
+    console.log(keys);
+
+    //checks current user's email
+    var checker = false;
+    var neww = {
+        name: name,
+        email: email,
+        ping: {dummy: 0}
+        }
+    //looks through database and checks if the user's email already exists; if it doesn't then it pushes it into database
+    for (var i = 0; i < keys.length; i++){
+        var k = keys[i];
+        if( email == users[k].email){
+            checker = true;
+            break
+            }
+        }
+    if (checker == false){
+        ref.push(neww)
+        console.log('new user added')
+        }
+    // // looks through database for user, if email is found push into database as a new user, otherwise do nothing
+
+}
+
+
+
+
+

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB7yh7WurRyNXf_OjfLhZHFJEp5j1ySUhE",
+        authDomain: "grouping-1502581913264.firebaseapp.com",
+        databaseURL: "https://grouping-1502581913264.firebaseio.com",
+        projectId: "grouping-1502581913264",
+        storageBucket: "grouping-1502581913264.appspot.com",
+        messagingSenderId: "861906013253"
+    };
+    firebase.initializeApp(config);
+    </script>
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script
+  src="http://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+    
+      
+        <!-- Latest compiled and minified CSS -->
+<!--<link rel="stylesheet" href="style.css">-->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!--Reference Client ID in meta tag here-->
+    <meta name="google-signin-client_id" content="657696259663-reptkndga3chnnd8hnrmcapb6ba6f64u.apps.googleusercontent.com">
+<script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+        window.location.href="index.html"
+      });
+    }
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+ <script src="script.js"></script>
+ <!--<script src="app.js"></script>-->
+  </head>
+  <body> 
+    
+         <div class="signs">
+            <div class="g-signin2" data-onsuccess="onSignIn2"></div>
+            <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+        </div>
+
+      <button type="button" onclick="addMarker()">Add Marker!</button>
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <button type = "button" onclick="newUser()">If you're new add yourself</button>
+    <button onclick="testlocal()">Testy locationy</button>
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuTYHWjbohOSfRZGuOBAzyU7Jj3PG_80&callback=initMap">
+    </script>
+  </body>
+</html>
