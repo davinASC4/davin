@@ -1,7 +1,15 @@
 var refTag = firebase.database().ref('tags');
-refTag.on('value', gotDataTags, errData);
+
+function errData(err) {
+    console.log(err);
+}
+
+
 var num = 1;
 var tagArray = [];
+
+refTag.on('value', gotDataTags, errData);
+
 function gotDataTags(data) {
     var tags = data.val();
     var keys = Object.keys(tags);
@@ -14,9 +22,7 @@ function gotDataTags(data) {
     }
     num++;
 }
-function errData(err) {
-    console.log(err);
-}
+
 function storeTag() {
     var newTag = document.getElementById("newTag").value;
     for (var i = 0; i < tagArray.length; i++) {

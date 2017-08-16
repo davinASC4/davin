@@ -101,21 +101,20 @@ function findPing2(data){
                 }
             }
     var userData = users[specificKey];
-    var values = Object.values(userData.ping);
-    console.log(userData.ping);
+    var values = Object.keys(userData.ping);
+    console.log('values',values);
     for (v = 0; v < values.length; v++){
-        for (subv = 0; subv < values[v].length; subv++){
-            if (subv == 0){
-                $("body").append("<p> Title:" + values[v][subv]  +"</p>");
-            }
-            else if (subv == 1){
-                $("body").append("<p> Lat:" + values[v][subv]  +"</p>");
-            }
-            else if (subv == 2){
-                $("body").append("<p> Long:" + values[v][subv]  +"</p>");
+                $("body").append("<p> Title:" + userData.ping[values[v]].Title  +"</p>");
+            
+                $("body").append("<p> Lat:" + userData.ping[values[v]].Lat  +"</p>");
+            
+                $("body").append("<p> Long:" + userData.ping[values[v]].Long  +"</p>");
+                
+                $("body").append("<p> Desc:" + userData.ping[values[v]].Desc  +"</p>");
+
                 $("body").append("<p></p>")
-            }
-        }
+            
+        
     }
 }
 

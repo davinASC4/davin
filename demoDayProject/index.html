@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+        <!--Reference platform.js library here-->
+        <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBoTBS7XjjOuzhSdhfmuo-MHDKO2b9X-Z8",
+    authDomain: "pings-debcc.firebaseapp.com",
+    databaseURL: "https://pings-debcc.firebaseio.com",
+    projectId: "pings-debcc",
+    storageBucket: "pings-debcc.appspot.com",
+    messagingSenderId: "872379970075"
+  };
+  firebase.initializeApp(config);
+</script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
+        <!--Reference Client ID in meta tag here-->
+        <meta name="google-signin-client_id" content="657696259663-o4tp7e0i9k5n8fjfj89j7ft762s7vrl1.apps.googleusercontent.com">
+
+        <!--jquery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+        </head>
+        <script src="script.js"></script>
+        <!--<script src="app.js"></script>-->
+           
+        </header>
+        
+
+         <div class ="mainContainer">
+        <!--Text greeting user-->
+         <div class="signs">
+        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <a href="#" class="signOut" onclick="onSignOut();">Sign out</a>
+        
+        
+
+         </div>
+        <header>
+            <h1>WELCOME <span class="userName">USER_NAME</span></h1>    
+        </header>
+<p>Click the button to display the entire URL of the current page.</p>
+
+
+<p id="demo"></p>
+
+        <!--Populate section with user data-->
+        <section>
+            <!--picture-->
+            <div class = "userImg">
+                <img src="assets/placeholder.png">
+            </div>
+
+            <!--User Data-->
+            <div class="userData">
+                <h2>E-MAIL:</h2>
+                <p class="email">example@example.com</p>
+            </div>
+        </section>
+    </div>        
+        
+    </body>
+</html>

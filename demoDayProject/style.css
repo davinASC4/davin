@@ -1,0 +1,49 @@
+
+#map{
+    height: 500px;
+    width: 60%;
+}
+
+.jumbotron{
+    color: white;
+    background-color: blueviolet;
+}
+.pingActivity {
+    border-style: solid;
+    border-color: black;
+    display: block;
+    width: 300px;
+    background-color: lightgray;
+    border-radius: 5px;
+
+}
+
+.popUpPosition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100%
+}
+
+#popUpWrapper {
+    width: 500px; 
+    margin: 70px auto; 
+    text-align: left;
+}
+
+#popUpContainer {
+    background-color: white; 
+    padding: 20px;
+    border-radius: 5px;
+
+}
+
+#closePopUp {
+    float: right
+}
+
+#closePopUp:hover {
+    cursor: pointer;
+}
