@@ -1,0 +1,22 @@
+body {
+    background-color: rgb(228, 229, 232);
+}
+.logInWrap {
+    background-color: rgb(194,181,216);
+    margin: 150px auto;
+    padding: 20px;
+    border-radius: 8px;
+    border-style: solid;
+    border-color: rgb(228, 229, 250);
+}
+#submitUser { 
+    background-color: rgb(113, 83, 160);
+    color: rgb(228, 229, 232);;
+}
+.label {
+    stroke-width: 5px;
+    color: rgb(75, 55, 106);
+}
+hr {
+    margin-bottom: 1px;
+}

@@ -1,12 +1,13 @@
 
 #map{
     height: 500px;
-    width: 60%;
+    width: 100%;
 }
 
 .jumbotron{
     color: white;
     background-color: blueviolet;
+    width: 100%;
 }
 .pingActivity {
     border-style: solid;
@@ -47,3 +48,10 @@
 #closePopUp:hover {
     cursor: pointer;
 }
+
+#feed{
+    height:800px;
+    overflow-y: scroll;
+}
+
+

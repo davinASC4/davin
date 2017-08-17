@@ -52,71 +52,112 @@
 
   <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
  <script src="script.js"></script>
+ <script src="feed.js"></script>
  
  <!--<script src="app.js"></script>-->
   </head>
   <body onload="getglobalData()"> 
-    <div class="container">
-      <div class="signs">
+    
+    <div class="container-fluid">
+  <div class="row">
+  <div id="mapBox" class="col-md-8">
+    <div class="signs">
         <div class="g-signin2" data-onsuccess="onSignIn2"></div>
         <button href="#" class="btn btn-success" onclick="onSignOut();">Sign out</button>
         <button type = "button" onclick="newUser()">If you're new add yourself</button>
     </div>
 
-
-      <button type="button" class="btn btn-danger" onclick="addMarker()" disabled >Add Marker!</button>
     
-      <div class="jumbotron">
-        <button id="filterTag" onclick="showFilter('popUpFilter')">Pop Up</button>
+    
+     <!--<button type="button" class="btn btn-danger" onclick="addMarker()">Add Marker!</button>
+    -->
+     <div class="jumbotron">
+        <button id="filterTag" class="btn btn-warning btn-sm" onclick="getLocation(),geocodeLatLng(), showFilter('popUpFilter')">Add Ping!</button>
+        
+       <p id="response"></p>
 
-        <p id="response"></p>
-
+       
+ 
+  <button type = "button" class="btn btn-warning btn-sm" onclick="getglobalData(), globalUpdate()">Check what Others are Pinging!</button>
+        <!--<button class="btn btn-warning btn-sm" onclick="addglobalMarker()">Add marker to global </button>-->
+        
+       <h3>My Google Maps Demo</h3>
+        <div id="map"></div>
         <div id="popUpFilter" class="popUpPosition" hidden>
             <div id="popUpWrapper">
                 <div id="popUpContainer">
-                    <i id="closePopUp" class="fa fa-window-close" aria-hidden="true" onclick="showFilter('popUpFilter'), clearTags();"></i>
                     
+                    <button onclick="geocodeLatLng()">Geocode</button>
+                    <i id="closePopUp" class="fa fa-window-close" aria-hidden="true" onclick="showFilter('popUpFilter'), clearTags();"></i>
                     <div class="input-group input-group-md">
                     <span class="input-group-addon">Enter A Title:</span>
                     <input id="title" type="text" class="form-control" placeholder="Ping Title">
                     <span class="input-group-btn">
                     </div><br>
 
-                    <div class="input-group input-group-md">
+                   <div class="input-group input-group-md">
                     <span class="input-group-addon">Enter A Description:</span>
                     <input id="desc" type="text" class="form-control" placeholder="Ping Description">
                     <span class="input-group-btn">
 
-                    <div class="input-group input-group-md">
+                   </div><br>
+
+                   <div class="input-group input-group-md">
                     <span class="input-group-addon">Duration:</span>
                     <input id="dur" type="text" class="form-control" placeholder="Ping Description">
                     <span class="input-group-btn">
-
                     </div><br>
 
-                    <button class="btn btn-danger" onclick="addMarker()" disabled >Submit</button>
-                    <button class="btn btn-danger" onclick="addglobalMarker()">Submit to Global</button>
+                   <div class="input-group input-group-md">
+                    <span class="input-group-addon">Lat:</span>
+                    <input id="Lat" type="text" class="form-control" placeholder="Ping Description">
+                    <span class="input-group-btn">
+                    </div><br>
+                  <div class="input-group input-group-md">
+                    <span class="input-group-addon">Long:</span>
+                    <input id="Long" type="text" class="form-control" placeholder="Ping Description">
+                    <span class="input-group-btn">
+                    </div><br>
+                   <div class="input-group input-group-md">
+                    <span class="input-group-addon">Latlng:</span>
+                    <input id="Latlng" type="text" class="form-control" placeholder="Ping Description">
+                    <span class="input-group-btn">
+                    </div><br>
+                   <div class="input-group input-group-md">
+                    <span class="input-group-addon">Address:</span>
+                    <input id="Address" type="text" class="form-control" placeholder="Ping Description">
+                    <span class="input-group-btn">
+                    </div><br>
+                   
+                    
 
-                    </div>
+                    <button class="btn btn-danger" onclick="showFilter('popUpFilter')">Cancel</button>
+                    <!--<button class="btn btn-danger" onclick="addMarker(), showFilter('popUpFilter')">Submit</button>-->
+                    <button class="btn btn-danger" onclick="addglobalMarker(), showFilter('popUpFilter')">Ping!</button>
                     <!--<input id="newTag"></input>-->
                     
-                    <!--<div class="tagChoiceField"></div>-->
+                   <!--<div class="tagChoiceField"></div>-->
                 </div>
-            </div>
-        
-        <button type = "button" class="btn btn-warning btn-sm" onclick="getglobalData(), globalUpdate()">Check what Others are Pinging!</button> 
-        <button class="btn btn-warning btn-sm" onclick="addglobalMarker()">Add marker to global </button>
-        
-        <h3>My Google Maps Demo</h3>
-        <div id="map"></div>
-        
+               </div>
+  </div>
+  </div>
+  
 
-        </div>
-      </div>
+ </div>
+  <div id="feed" class="well col-md-4">
+<h1>Feed Box</h1>
 
-         </div>
+       <button onclick="displayInfo()">Master</button>
+        <button onclick="findName()">What's your name?</button>
+        <button onclick="findPing()">What have you pinged</button>
+        <button onclick="pop()">Userkey</button>
+
+  </div>
+  
+</div>
+</div>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuTYHWjbohOSfRZGuOBAzyU7Jj3PG_80&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWuTYHWjbohOSfRZGuOBAzyU7Jj3PG_80&callback=getglobalData&callback=globalUpdate">
     </script>
 
     <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'></script>

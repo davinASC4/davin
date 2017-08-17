@@ -39,23 +39,81 @@ function searchPing() {
     document.getElementById("response").innerHTML = "You searched for " + userSearch + " in " + tag;
 }
 
-function showFilter(id) {
-    var e = document.getElementById(id);
-    if (e.style.display == 'block')
-        e.style.display = 'none';
-    else
-        e.style.display = 'block';
+var num = 0; // To test if is program first tiem running
+var tagArray = ["guitar", "games", "beach", "xbox", "party", "football", "groupwork", "restaurant", "fundraiser", "soupkitchen", "newhouse", "comicbooks", "boardgame", "yoga", "cook"];
+function addTag(id) {
+    var newTag = document.getElementById(id).value;
+    for (var i = 0; i < tagArray.length; i++) {
+        if (newTag.toUpperCase() == tagArray[i].toUpperCase()) {
+            return;
+        }
+        
+    }
+    tagArray.push(newTag);
 }
+function updateTagField() {
+    for (var i = 0; i < tagArray.length; i++) {
+        $(".tagChoiceField").append('<label class="tags btn btn-secondary">'
+    + '<input type="checkbox" onclick="addTagsToCollection(' + i + ');" autocomplete="off" id="tag' + i + '">' + tagArray[i] + '</label>');
+    }
+}
+function showFilter() {
+    var e = document.getElementById('popUpFilter');
+    if (e.style.display == 'block') {
+        e.style.display = 'none';
+    }
+    else {
+        e.style.display = 'block';
+        updateTagField();
+        console.log("I am here");
+    }
+}
+var pingTags;
+var temp = [];
+function addTagsToCollection(num) {
+    temp.push(tagArray[num]);
+}
+function addTagsToPing() {
+    pingTags = temp;
+    temp = [];
+    for (var i = 0; i < pingTags.length; i++) {
+        $(".addedToPing").append(pingTags[i]);
+        console.log(pingTags[i]);
+    }
+    pingTags = [];
+}
+// clear tags in pop up window when submit or x button is clicked
+function clearTags() {
+    $(".tagChoiceField").empty();
+}
+function contains(text1, text2) {
+    if (text1.indexOf(text2) != -1) {
+        return true;
+    } else return false;
+}
+$(function() { 
+    $("#newTag").keyup(function() {
+        console.log("key is up");
+        var searchText = $("#newTag").val().toUpperCase();
+        if (searchText == "") {
+            $(".tagChoiceField .tags").each(function() {
+                $(this).show();
+            });
+        }
+        $(".tagChoiceField .tags").each(function() {
+                if (contains($(this).text().toUpperCase(), searchText)) {
+                    console.log($(this).text());
+                    $(this).show();
+    
+                } 
+                else {
+                    $(this).hide();
+                    console.log($(this).text());
+                }
+        });
+    });
+});
 
-
-// function editMarker(){
-//   var newtitle = prompt("Please enter The title of your ping:", "ping title");
-//     if (newtitle != null) {
-//         title = newtitle;}
-//   var newdesc = prompt("Please enter a brief description of your ping:", "ping desc");
-//     if (newdesc != null) {
-//         desc = newdesc;}
-// }
 
 var locations = [];
 var increment = 0;
@@ -94,11 +152,11 @@ database.on("child_added", function(rowData){
 function initMap() {
 var map = new google.maps.Map(document.getElementById('map'), {
   zoom: 6,
-  center: new google.maps.LatLng(39.809860, -98.555183),
+  center: new google.maps.LatLng(),
   mapTypeId: google.maps.MapTypeId.ROADMAP
 
 });
-
+var geocoder = new google.maps.Geocoder;
 var infowindow = new google.maps.InfoWindow();
 var marker;
 for (var i = 0; i < locations.length; i++) {  
@@ -123,25 +181,62 @@ for (var i = 0; i < locations.length; i++) {
                                     'Description: ' + locations[i].Desc + '<br>' +
                                     'Date: ' + locations[i].Date + '<br>' + 
                                     'Duration: ' + locations[i].Duration + '<br>' + 
-
+                                    'Address: ' + locations[i].Address + '<br>' +
                                     "<button onclick='showComments({ " + 'Time:' + locations[i].Time + ',' + 'Uid:' + ' "' + locations[i].Uid + '" ' + ","  +     "})'>"   + "Show comments </button>" + "<br>" +
-                                    " <div class='container'> " +
-  <p>Click on the button to toggle between showing and hiding content.</p>
-  <button type='button' class='btn btn-info' data-toggle='collapse' data-target='#demo'>Simple collapsible</button>
-  <div id='demo' class='collapse'>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </div> "
-</div>                
+                 
                                       '</div>');
       
     }
   })(marker, i), function() {
          marker.openInfoWindowHtml();
       });
-  
+  getglobalData();
+  globalUpdate();
 }//console.log(marker);  
+      }
+
+var x = document.getElementById("demo");
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+
+    var mylat = position.coords.latitude;
+    var mylong = position.coords.longitude;
+    $('#Lat').val(mylat);
+    $('#Long').val( mylong);
+    $('#Latlng').val(mylat + "," + mylong )
+        console.log(mylat, mylong, true);
+
+}
+
+
+function geocodeLatLng(geocoder, map, infowindow) {
+    var geocoder = new google.maps.Geocoder;
+        var input = document.getElementById('Latlng').value;
+        var latlngStr = input.split(',', 2);
+
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+        console.log(latlng)
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+
+              $('#Address').val(results[0].formatted_address);
+              
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
       }
 
 
@@ -169,17 +264,20 @@ function addMarker1(data){
 
     var refping = firebase.database().ref('users/' + specificKey + '/ping');
 
+
+
 locations.push({
     Uid: userid,
     Title: $('#title').val(), 
-    Lat: Math.random() * 10 + 30, 
-    Long: Math.random() * 10 - 100,
+    Lat: $('#Lat').val(), 
+    Long: $('#Long').val(),
     Desc: $("#desc").val(),
      Date: today,
     Name: user.displayName,
     Duration: $('#dur').val(),
     Comments: {First: 'Beat you to it'},
     Time: time.getTime(),
+    Address: String($('#Address').val())
 
 });
 
@@ -194,6 +292,7 @@ refping.push({
     Duration: locations[increment].Duration,
     Comments: locations[increment].Comments ,
     Time: locations[increment].Time,
+    Address: locations[increment].Address
 
 } );
 
@@ -340,6 +439,7 @@ function addComment(ping){
 }
 
 function showComments(ping){
+    $('#demo').empty()
     var pinglist;
     var refcomment;
     //established connectsion bewteen firebase and ping
@@ -358,6 +458,7 @@ function showComments(ping){
                         for (c = 0; c < comments.length; c++){
                             if (c!= comments.length-1){
                                 console.log(rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]]);
+                                $('#demo').append(rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]].name + ":" + rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]].message)
                             }
                         }
                         break
@@ -377,10 +478,11 @@ function showComments(ping){
 function global(data) {
     var user = firebase.auth().currentUser;
     var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 6,
-    center: new google.maps.LatLng(39.809860, -98.555183),
+    zoom: 12,
+    center: new google.maps.LatLng(40.730610, -73.935242),
     mapTypeId: google.maps.MapTypeId.ROADMAP
-    });
+});
+    var geocoder = new google.maps.Geocoder;
     var infowindow = new google.maps.InfoWindow();
     var marker;
     for (var i = 0; i < glocations.length; i++) {  
@@ -400,11 +502,19 @@ function global(data) {
                                     'Date: ' + glocations[i].Date + '<br>' + 
                                     'Duration: ' + glocations[i].Duration + '<br>' + 
 
+                                    'Address: ' + glocations[i].Address + '<br>' +
+
                                      'posted by ' + glocations[i].Name     + '<br>' +
-                                    "<button onclick='showComments({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  +     "})'>"   + "Show comments </button>" + "<br>" +
-                                    // "<button onclick="  + + "add comment </button>" + "<br>" +
-                                    "<button onclick= 'addComment({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  + 'User:' + ' "' +user.displayName + '" ' + ',' + 'message:' + '5' +     "})'>"   + "Add comment </button>" + "<br>" +
                                      
+                                    "<button onclick='showComments({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  +     "})'>"   + "Show comments </button>" + "<br>" +
+                                    
+                                    "<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#demo' onclick= 'addComment({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  + 'User:' + ' "' +user.displayName + '" ' + ',' + 'message:' + '5' +     "})'>"   + "Add comment </button>" + "<br>" +
+                                     
+                                     "<div class='collapse' id='demo'>"   +
+
+
+                                     "</div>"   +
+
                                       '</div>');
       
     }
@@ -529,5 +639,7 @@ function onSignOut() {
     googleSignout();
 }
 
-
+// document.getElementById('submit').addEventListener('click', function() {
+//           geocodeLatLng(geocoder, map, infowindow);
+//         });
 //sing in/out
