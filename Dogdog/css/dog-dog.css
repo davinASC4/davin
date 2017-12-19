@@ -36,7 +36,7 @@ body {
 }
 
 .featurette-divider {
-    margin: 80px 0;
+    margin: 40px 0;
 }
 
 .featurette {
@@ -53,6 +53,18 @@ body {
 
 .featurette-heading {
     font-size: 50px;
+}
+
+#pup1 {
+
+}
+
+#pup2 {
+    background-color: #eee;    
+}
+
+#pup3 {
+
 }
 
 footer {
