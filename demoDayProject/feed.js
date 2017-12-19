@@ -26,15 +26,37 @@ database.on("child_changed", function(rowData){
         }
         }
     }
+
+    //sort objects by the time they were made;
+
+    golocations.sort(function(a, b) {
+    return a.Time - b.Time;
+    });
+
+
     $('#feed').empty();
-    console.log('global locations',glocations);
     for (g=golocations.length-1; g>=0; g--){
+        var gcenterlat = golocations[g].Lat;
+        var gcenterlon = golocations[g].Long;
+        
         $("#feed").append("<div class = 'jumbotron'><p> Lat:" + 
         golocations[g].Lat  +"</p> <p> Long:" + golocations[g].Long  +
-        "</p>" + "<p> Desc:"+ golocations[g].Desc   +"</p>" + "<hr><p> Name:" + golocations[g].Name  +"</p></div>");
-        console.log(golocations[g].Lat)
+        "</p>" + "<p> Desc:"+ golocations[g].Desc   +"</p>" + "<hr><p> Name:" + golocations[g].Name  +
+        "<button onclick='set(" + gcenterlat  + ","+ gcenterlon  +")'>findme</button>" +
+        "<button onclick='global()' > zoom </button>" +
+        
+        "</p></div>");
     }
+
+
 });
 });
 
+function set(x,y){
+    $('#zoom').val(15);
+    if($('#zoom').val() >= 0) { 
+        $('#centerlat').val(x);
+         $('#centerlon').val(y)
+     }
 
+}

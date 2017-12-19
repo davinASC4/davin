@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+  
+  <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.1.min.js"></script>
+
+    <title>Geolocation</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+<body>
+<div id="address-container">
+    <input id="address" type="text">
+    <input id="submit-address" type="button" value="Search">
+    </button>
+  </div>
+
+    <div id="map"></div>
+    <script src="script.js"></script> 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJsSLFGsC9VUMoJx5HSPKrvGpKAwpZcfI&callback=initMap">
+    </script>
+</body>
+</html>

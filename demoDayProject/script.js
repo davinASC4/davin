@@ -212,7 +212,7 @@ function showPosition(position) {
     $('#Lat').val(mylat);
     $('#Long').val( mylong);
     $('#Latlng').val(mylat + "," + mylong )
-        console.log(mylat, mylong, true);
+        // console.log(mylat, mylong, true);
 
 }
 
@@ -223,7 +223,7 @@ function geocodeLatLng(geocoder, map, infowindow) {
         var latlngStr = input.split(',', 2);
 
         var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-        console.log(latlng)
+        // console.log(latlng)
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[0]) {
@@ -245,6 +245,7 @@ function addMarker(){
 }
 
 function addMarker1(data){
+
 
   var user = firebase.auth().currentUser;
     // console.log(user);
@@ -277,7 +278,8 @@ locations.push({
     Duration: $('#dur').val(),
     Comments: {First: 'Beat you to it'},
     Time: time.getTime(),
-    Address: String($('#Address').val())
+    Address: String($('#Address').val()),
+    feedbutton: false,
 
 });
 
@@ -292,7 +294,8 @@ refping.push({
     Duration: locations[increment].Duration,
     Comments: locations[increment].Comments ,
     Time: locations[increment].Time,
-    Address: locations[increment].Address
+    Address: locations[increment].Address,
+    feedbutton: locations[increment].feedbutton,
 
 } );
 
@@ -337,7 +340,7 @@ function gotData(data){
     }
     else{
         var keys = Object.keys(users);
-        console.log(keys);
+        // console.log(keys);
         //checks current user's email
         var checker = false;
         
@@ -408,7 +411,7 @@ function addComment(ping){
             if (rowData.val()[keys[k]].uid == ping.Uid){
 
                 pinglist = Object.keys(rowData.val()[keys[k]].ping);
-                console.log(pinglist.length, 'd')
+                // console.log(pinglist.length, 'd')
                 // console.log('work');
                 for (pl = 0; pl < pinglist.length; pl++){
                     refcomment = firebase.database().ref('users/' + keys[k] + '/ping/' + pinglist[pl] + '/Comments');
@@ -416,7 +419,8 @@ function addComment(ping){
                     if (rowData.val()[keys[k]].ping[pinglist[pl]].Time == ping.Time ){
                         
                             var name = ping.User;
-                            var comment = ping.message;
+                            var comment = String($('#comment').val());
+                            
                             refcomment.push(
                                 {
                                     name: name,
@@ -438,7 +442,12 @@ function addComment(ping){
     )
 }
 
+// $("html").on('click', '#infoz', function(data){
+
+// });
+
 function showComments(ping){
+    $('#demo').toggle()
     $('#demo').empty()
     var pinglist;
     var refcomment;
@@ -458,7 +467,8 @@ function showComments(ping){
                         for (c = 0; c < comments.length; c++){
                             if (c!= comments.length-1){
                                 console.log(rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]]);
-                                $('#demo').append(rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]].name + ":" + rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]].message)
+                                $('#demo').append('<h9>' + rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]].name +
+                                 ":" + rowData.val()[keys[k]].ping[pinglist[pl]].Comments[comments[c]].message + '</h9><br>')
                             }
                         }
                         break
@@ -476,10 +486,26 @@ function showComments(ping){
 
 
 function global(data) {
+
+    var centerx;
+    var centery;
+    var zo;
+    if ($('#zoom').val() >0){
+        zo = $('#zoom').val();
+        centerx = $('#centerlat').val();
+        centery = $('#centerlon').val();
+    }
+
+    else {
+        centerx = 40.730610;
+        centery = -73.935242;
+        zo = 12;
+    }
+
     var user = firebase.auth().currentUser;
     var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
-    center: new google.maps.LatLng(40.730610, -73.935242),
+    center: new google.maps.LatLng(centerx, centery),
     mapTypeId: google.maps.MapTypeId.ROADMAP
 });
     var geocoder = new google.maps.Geocoder;
@@ -491,12 +517,13 @@ function global(data) {
         position: new google.maps.LatLng(glocations[i].Lat, glocations[i].Long),
         map: map, 
     });
+
+
     google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
         infowindow.open(map, marker);
-        console.log(user.displayName)
      infowindow.setContent('<div contentEditable="true" ' +
-                                   'style="height: 100px; color: black;">' +
+                                   'style="height: 150px; color: black;">' +
                                    'Title: '+ glocations[i].Title +'<br>'  +
                                     'Description: ' + glocations[i].Desc + '<br>' +
                                     'Date: ' + glocations[i].Date + '<br>' + 
@@ -505,22 +532,18 @@ function global(data) {
                                     'Address: ' + glocations[i].Address + '<br>' +
 
                                      'posted by ' + glocations[i].Name     + '<br>' +
-                                     
-                                    "<button onclick='showComments({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  +     "})'>"   + "Show comments </button>" + "<br>" +
+                                    '<input id="comment" type="text" class="form-control" placeholder="Write Comment here">' +
+                                       
+
+                                    "<button id = 'infoz' type='button'  class='btn btn-info'  onclick='showComments({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  +     "})'>"   + "Show comments </button>" + "<br>" +
                                     
-                                    "<button type='button' class='btn btn-info' data-toggle='collapse' data-target='#demo' onclick= 'addComment({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  + 'User:' + ' "' +user.displayName + '" ' + ',' + 'message:' + '5' +     "})'>"   + "Add comment </button>" + "<br>" +
+                                    "<button type='button' class='btn btn-info' onclick= 'addComment({ " + 'Time:' + glocations[i].Time + ',' + 'Uid:' + ' "' + glocations[i].Uid + '" ' + ","  + 'User:' + ' "' +user.displayName + '" ' + ',' + 'message:' + '5' +     "})'>"   + "Add comment </button>" + "<br>" +
                                      
-                                     "<div class='collapse' id='demo'>"   +
+                                     "<div id='demo'> </div>"   +
 
-
-                                     "</div>"   +
-
-                                      '</div>');
+                            '</div>');
       
     }
-
-
-
 
 
     })(marker, i), function() {
@@ -643,3 +666,28 @@ function onSignOut() {
 //           geocodeLatLng(geocoder, map, infowindow);
 //         });
 //sing in/out
+
+function targetdress(){
+    var address= $("#address").val();
+     var address = address.replace(/\s+/g, '+'); //Replaces spaces with +
+     var cord = {}; 
+     var latitude = "";
+     var longitude = "";
+    var googleurl = "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyCWuTYHWjbohOSfRZGuOBAzyU7Jj3PG_80";
+   $.ajax({
+    url: googleurl,
+    dataType: 'json',
+    success: function(data) {
+        var info = data.results[0];
+         var coordinates = info.geometry.location;   
+         useReturnData(coordinates);     
+        }
+    });
+    function useReturnData(coordinates){
+        cord = coordinates;
+        $('#Lat').val(cord.lat);
+        $('#Long').val(cord.lng);
+        $('#Latlng').val(mylat + "," + mylong )
+
+    }
+}
