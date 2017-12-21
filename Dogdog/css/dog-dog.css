@@ -55,17 +55,23 @@ body {
     font-size: 50px;
 }
 
-#pup1 {
+.list-group{
+      display:inline-block;
+}
+
+#pup0 {
 
 }
 
-#pup2 {
+#pup1 {
     background-color: #eee;    
 }
 
-#pup3 {
+#pup2 {
 
 }
+
+
 
 footer {
     margin: 50px 0;
